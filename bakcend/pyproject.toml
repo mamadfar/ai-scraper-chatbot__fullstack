@@ -1,0 +1,60 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.136.1",
+    "uvicorn>=0.46.0", # The ASGI (Asynchronous Server Gateway Interface) server for FastAPI
+    "pydantic-settings>=2.14.0",
+    "pydantic>=2.13.3", # Data validation and settings management using Python type hints
+    "langchain>=1.2.17",
+    "langchain-google-genai>=4.2.2",
+    "langchain-ollama>=1.1.0",
+    "langchain-openai>=1.2.1",
+    "langgraph>=1.1.10",
+    "pgvector>=0.4.2",
+    "psycopg[async]>=3.3.4", # Asynchronous PostgreSQL client for Python
+    "sqlalchemy>=2.0.49", # ORM (Using async engine with pgvector)
+    "playwright>=1.59.0", # web scraping and automation
+    "beautifulsoup4>=4.14.3", # HTML and XML parser
+    "httpx>=0.28.1", # Async HTTP client
+    "python-dotenv>=1.2.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+    "pytest-asyncio>=1.3.0", # Async testing support
+    "pytest-cov>=7.1.0", # Code coverage for testing
+    "httpx>=0.28.1", # Can be used for testing HTTP requests
+    "ruff>=0.15.12", # Code formatter and linter
+    "mypy>=1.20.2", # Static type checker
+]
+
+[build-system]
+requires = ["hatchling"] # Hatchling is a build system for Python projects
+build-backend = "hatchling.build"
+
+# Package code lives under `app/`, not a top-level `bakcend/` package
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+# Ruff config
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"] # Errors, pyflakes, imports, upgrades
+
+# Pytest config
+[tool.pytest.ini_options]
+asyncio_mode = "auto" # All async tests run automatically
+testpaths = ["tests"]
+
+# MyPy config (type checking)
+[tool.mypy]
+python_version = "3.13"
+strict = true

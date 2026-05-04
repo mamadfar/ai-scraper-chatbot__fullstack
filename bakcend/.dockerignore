@@ -1,0 +1,32 @@
+
+
+# Python virtual environment — NEVER copy this into Docker
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Test/coverage artifacts
+htmlcov/
+.coverage
+coverage.xml
+
+# Env files — secrets never go into Docker images
+.env
+.env.*
+
+# Editor
+.vscode/
+.idea/
+
+# Git
+.git/
+.gitignore
+
+# Docs
+*.md
+.doc/
