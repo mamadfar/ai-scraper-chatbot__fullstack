@@ -23,6 +23,15 @@ class Settings(BaseSettings):
     debug: bool = False
     api_prefix: str = "/api/v1"
 
+    # Rate limiting - controls all endpoints globally
+    rate_limit_enabled: bool = True
+    rate_limit_requests: int = 100 # max requests per window
+    rate_limit_window: int = 60 # seconds
+
+    # Chat endpoint gets a stricter limit (LLM calls are expensive!)
+    chat_rate_limit_requests: int = 20
+    chat_rate_limit_window: int = 60 # seconds
+
     # Database
     database_url: str = Field(
         default="postgresql+psycopg://user:password@localhost:5432/chatbot"

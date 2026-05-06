@@ -21,6 +21,7 @@ dependencies = [
     "beautifulsoup4>=4.14.3", # HTML and XML parser
     "httpx>=0.28.1", # Async HTTP client
     "python-dotenv>=1.2.2",
+    "loguru>=0.7.3",
 ]
 
 [dependency-groups]
@@ -37,7 +38,7 @@ dev = [
 requires = ["hatchling"] # Hatchling is a build system for Python projects
 build-backend = "hatchling.build"
 
-# Package code lives under `app/`, not a top-level `bakcend/` package
+# Package code lives under `app/`, not a top-level `backend/` package
 [tool.hatch.build.targets.wheel]
 packages = ["app"]
 

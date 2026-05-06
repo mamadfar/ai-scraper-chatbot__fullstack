@@ -13,10 +13,10 @@ from app.modules.health.schemas import HealthResponse
 router = APIRouter(prefix="/health", tags=["Health"])
 
 
-# @router.get("/") defines a GET endpoint at /health/
+# @router.get("") defines a GET endpoint at /health
 # response_model tells FastAPI what shape the response will be -
 # it auto-validates AND auto-generates Swagger docs
-@router.get("/", response_model=HealthResponse)
+@router.get("", response_model=HealthResponse)
 async def health_check() -> HealthResponse:
     """
     Health check endpoint.

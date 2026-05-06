@@ -3,20 +3,16 @@
 Global error handler
 """
 
-from doctest import debug
 import logging
 from datetime import datetime, timezone
 
+from loguru import logger
 from fastapi import Request
 from fastapi.responses import JSONResponse
 from pydantic import ValidationError
 
 from app.core.config import settings
 from app.core.exceptions import AppException
-
-#? logging is Python's built-in logger - like console.log() but structured
-# In production we'd swap this for structlog or loguru
-logger = logging.getLogger(__name__)
 
 # This is a FastAPI exception handler — a function that catches
 # a specific exception type and returns an HTTP response.
