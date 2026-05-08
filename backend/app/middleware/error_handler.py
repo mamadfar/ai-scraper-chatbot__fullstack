@@ -3,7 +3,6 @@
 Global error handler
 """
 
-import logging
 from datetime import datetime, timezone
 
 from loguru import logger

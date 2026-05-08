@@ -22,6 +22,7 @@ dependencies = [
     "httpx>=0.28.1", # Async HTTP client
     "python-dotenv>=1.2.2",
     "loguru>=0.7.3",
+    "slowapi>=0.1.9",
 ]
 
 [dependency-groups]

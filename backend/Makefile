@@ -61,3 +61,24 @@ docker-build: 	## Build Docker images
 docker-up: 	## Start all services
 	docker compose up -d 	# -d for detached mode (background)
 
+docker-down: 	## Stop all services
+	docker compose down
+
+docker-logs: 	## Tail logs from all services
+	docker compose logs -f 		## -f for follow mode (tail)
+
+docker-clean: 	## Stop services and remove volumes (⚠️ deletes DB data)
+
+#? ─── Cleanup ─────────────────────────────────────────────────────────────────
+clean: 	## Remove all Docker artifacts (including volumes, cache, build, etc)
+	find . -type d -name __pycache__ -exec rm -rf {} +		## d means directory, -name means search for a specific name
+	find . -type d -name .pytest_cache -exec rm -rf {} +
+	find . -type d -name .mypy_cache -exec rm -rf {} +
+	find . -type d -name .ruff_cache -exec rm -rf {} +
+	find . -name "*.pyc" -delete
+	rm -rf htmlcov .coverage coverage.xml
+
+#? ─── Help ────────────────────────────────────────────────────────────────────
+help:  ## Show this help message
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
+		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
