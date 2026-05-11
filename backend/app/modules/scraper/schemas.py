@@ -3,7 +3,7 @@
 from datetime import datetime, timezone
 from enum import Enum
 
-from pydantic import Field
+from pydantic import BaseModel, Field
 
 
 #? Enum in Python = same as enum in TS
@@ -28,3 +28,12 @@ class ScrapedPage(BaseModel):
 class ScrapeRequest(BaseModel):
     """ Request body for triggering a scrape via API """
     url: str = Field()
+    max_pages: int = Field(default=5, ge=1, le=200) # ge = greater than or equal to, le = less than or equal to
+    follow_links: bool = Field(default=True)
+
+class ScrapeResponse(BaseModel):
+    """ Response from the scrape endpoint """
+    status: ScrapeStatus
+    pages_scraped: int
+    message: str
+    started_at: datetime = Field(default_factory=datetime.now(timezone.utc))
